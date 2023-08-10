@@ -7,7 +7,7 @@ setup(
     packages=find_packages(),
     package_data={
         "bundle": [
-            "analyze/datasets/tap-capsulecrm/*.yaml",
+            "analyze/datasets/tap-capsulecrm/*.yml",
             "orchestrate/tap-capsulecrm/elt.sh"
         ]
     },
