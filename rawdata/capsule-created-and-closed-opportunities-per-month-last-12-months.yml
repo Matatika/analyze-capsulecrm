@@ -1,0 +1,13 @@
+capsule-created-and-closed-opportunities-per-month-last-12-months: |-
+  [{"cc.year_month": "2022-09-01", "cc.created_count": "15", "cc.closed_count": "4"},
+  {"cc.year_month": "2022-10-01", "cc.created_count": "21", "cc.closed_count": "5"},
+  {"cc.year_month": "2022-11-01", "cc.created_count": "24", "cc.closed_count": "7"},
+  {"cc.year_month": "2022-12-01", "cc.created_count": "24", "cc.closed_count": "12"},
+  {"cc.year_month": "2023-01-01", "cc.created_count": "36", "cc.closed_count": "8"},
+  {"cc.year_month": "2023-02-01", "cc.created_count": "31", "cc.closed_count": "9"},
+  {"cc.year_month": "2023-03-01", "cc.created_count": "33", "cc.closed_count": "11"},
+  {"cc.year_month": "2023-04-01", "cc.created_count": "42", "cc.closed_count": "15"},
+  {"cc.year_month": "2023-05-01", "cc.created_count": "46", "cc.closed_count": "14"},
+  {"cc.year_month": "2023-06-01", "cc.created_count": "45", "cc.closed_count": "16"},
+  {"cc.year_month": "2023-07-01", "cc.created_count": "39", "cc.closed_count": "10"},
+  {"cc.year_month": "2023-08-01", "cc.created_count": "44", "cc.closed_count": "13"},]

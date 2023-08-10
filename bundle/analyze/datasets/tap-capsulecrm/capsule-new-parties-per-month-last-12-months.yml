@@ -1,0 +1,45 @@
+version: datasets/v0.2
+source: tap-capsulecrm
+title: New Parties Created per Month Last 12 Months
+questions: What are the number of created parties per month?
+description: |-
+  Number of created parties per month for the last 12 months.
+
+  #Capsule
+metadata: |-
+  {
+    "name": "parties", 
+    "label": "Capsule Created Parties per Month", 
+    "related_table": {
+      "columns": [
+        {"name": "year_month", "label": "Month & Year", "description": "Month & Year"}
+      ],
+      "aggregates": [
+        {"name": "created_count", "label": "Created", "description": "Parties created"}
+      ]
+    }
+  }
+visualisation: |-
+  {
+     "chartjs-chart": {
+        "chartType": "bar",
+        "options": {
+           "scales": {
+              "y": {
+                 "beginAtZero": true,
+                  "ticks": {
+                    "stepSize": 1
+                  }
+              }
+           }
+        }
+     }
+  }
+query: |-
+  SELECT 
+    TO_CHAR(created_at, 'YYYY-MM') "parties.year_month"
+    , COUNT(*) "parties.created_count"
+  FROM parties
+  WHERE TO_CHAR(created_at, 'YYYY-MM') >= TO_CHAR(CURRENT_DATE - INTERVAL '12 months', 'YYYY-MM')
+  GROUP BY TO_CHAR(created_at, 'YYYY-MM')
+  ORDER BY "parties.year_month"

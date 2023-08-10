@@ -1,0 +1,31 @@
+version: datasets/v0.2
+source: tap-capsulecrm
+title: Open Opportunities
+questions: What are the number of open opportunities?
+description: |-
+  Number of open opportunities.
+
+  #Capsule
+metadata: |-
+  {
+    "name": "fact_opportunities", 
+    "label": "Open Opportunities", 
+    "related_table": {
+      "columns": [
+      ],
+      "aggregates": [
+        {"name": "open", "label": "Open Opportunities", "description": "Open Opportunities"}
+      ]
+    }
+  }
+visualisation: |-
+  {
+     "chartjs-chart": {
+        "chartType": "treemap"
+     }
+  }
+query: |-
+  SELECT
+    COUNT(*) "fact_opportunities.open"
+  FROM fact_opportunities
+  WHERE closed_on NOTNULL

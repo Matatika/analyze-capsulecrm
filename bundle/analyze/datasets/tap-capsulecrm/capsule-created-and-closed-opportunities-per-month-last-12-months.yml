@@ -1,0 +1,60 @@
+version: datasets/v0.2
+source: tap-capsulecrm
+title: Created and Closed Opportunities per Month Last 12 Months
+questions: What are the number of created and closed opportunities per month?
+description: |-
+  Number of created and closed opportunities per month for the last 12 months.
+
+  #Capsule
+metadata: |-
+  {
+    "name": "cc", 
+    "label": "Capsule Created and Closed Opportunities", 
+    "related_table": {
+      "columns": [
+        {"name": "year_month", "label": "Month & Year", "description": "Month & Year"}
+      ],
+      "aggregates": [
+        {"name": "created_count", "label": "Created", "description": "Opportunities created"},
+        {"name": "closed_count", "label": "Closed", "description": "Opportunities closed"}
+      ]
+    }
+  }
+visualisation: |-
+  {"chartjs-chart": {"chartType": "bar", 
+      "options": {
+        "scales": {
+          "y": {
+            "beginAtZero": true,
+            "ticks": {
+              "stepSize": 1
+            }
+          }
+        }
+      }
+    }
+  }
+query: |-
+  WITH created_counts AS (
+    SELECT
+      DATE_TRUNC('month', created_at)::DATE AS created_month,
+      COUNT(*) AS created_count
+    FROM fact_opportunities
+    GROUP BY created_month
+  ),
+  closed_counts AS (
+    SELECT
+      DATE_TRUNC('month', CAST(closed_on AS DATE))::DATE AS closed_month,
+      COUNT(*) AS closed_count
+    FROM fact_opportunities
+    WHERE closed_on IS NOT NULL
+    GROUP BY closed_month
+  )
+  SELECT
+    TO_CHAR(COALESCE(cc.created_month, cl.closed_month), 'YYYY-MM') "cc.year_month",
+    COALESCE(cc.created_count, 0) "cc.created_count",
+    COALESCE(cl.closed_count, 0) "cc.closed_count"
+  FROM created_counts cc
+  FULL JOIN closed_counts cl ON cc.created_month = cl.closed_month
+  WHERE TO_CHAR(COALESCE(cc.created_month, cl.closed_month), 'YYYY-MM') >= TO_CHAR(CURRENT_DATE - INTERVAL '12 months', 'YYYY-MM')
+  ORDER BY "cc.year_month"

@@ -1,0 +1,7 @@
+capsule-count-of-active-opportunities-by-stage: |-
+  [{"fact_opportunities.count": "5", "fact_opportunities.milestone_name": "New"},
+  {"fact_opportunities.count": "21", "fact_opportunities.milestone_name": "Qualified"},
+  {"fact_opportunities.count": "5", "fact_opportunities.milestone_name": "Meeting"},
+  {"fact_opportunities.count": "6", "fact_opportunities.milestone_name": "Proposal"},
+  {"fact_opportunities.count": "2", "fact_opportunities.milestone_name": "Negotiation"},
+  {"fact_opportunities.count": "64", "fact_opportunities.milestone_name": "Contract"}]

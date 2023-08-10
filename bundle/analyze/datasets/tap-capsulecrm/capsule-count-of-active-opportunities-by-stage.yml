@@ -1,0 +1,42 @@
+version: datasets/v0.2
+source: tap-capsulecrm
+title: Open Opportunities by Milestone
+questions: What are the number of open opportunities by the milestone they are currently in?
+description: |-
+  Number of open opportunities by milestone they are currently in.
+
+  #Capsule
+metadata: |-
+  {
+    "name": "fact_opportunities", 
+    "label": "Capsule Created and Closed Opportunities", 
+    "related_table": {
+      "columns": [
+        {"name": "milestone_name", "label": "Milestone Name", "description": "Milestone Name"}
+      ],
+      "aggregates": [
+        {"name": "count", "label": "Open Opportunities", "description": "Open Opportunities"}
+      ]
+    }
+  }
+visualisation: |-
+  {"chartjs-chart": {"chartType": "bar", 
+      "options": {
+        "scales": {
+          "y": {
+            "beginAtZero": true,
+            "ticks": {
+              "stepSize": 1
+            }
+          }
+        }
+      }
+    }
+  }
+query: |-
+  SELECT 
+    COUNT(*) "fact_opportunities.count"
+    , milestone__name "fact_opportunities.milestone_name"
+  from fact_opportunities
+  where closed_on is null
+  group by milestone__name
