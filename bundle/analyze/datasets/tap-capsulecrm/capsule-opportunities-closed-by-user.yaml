@@ -1,0 +1,44 @@
+version: datasets/v0.2
+source: capsule
+title: Opportunities Closed by User
+questions: What users are closing the most opportunities?
+description: |-
+  Number of opportunities closed by users.
+
+  #Capsule
+metadata: |-
+  {
+    "name": "fact_opportunities", 
+    "label": "Open Opportunities", 
+    "related_table": {
+      "columns": [
+      {"name": "user", "label": "User", "description": "User"}
+      ],
+      "aggregates": [
+        {"name": "count_closed", "label": "User", "description": "User"}
+      ]
+    }
+  }
+visualisation: |-
+  {
+     "chartjs-chart": {
+        "chartType": "bar",
+        "options": {
+           "scales": {
+              "y": {
+                 "beginAtZero": true,
+                  "ticks": {
+                    "stepSize": 1
+                  }
+              }
+           }
+        }
+     }
+  }
+query: |-
+  SELECT 
+  	COUNT(*) "fact_opportunities.count_closed"
+  	, owner__name "fact_opportunities.user"
+  FROM fact_opportunities
+  WHERE closed_on NOTNULL
+  GROUP BY owner__name

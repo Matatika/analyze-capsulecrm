@@ -1,0 +1,4 @@
+capsule-opportunities-closed-by-user: |-
+  [{"fact_opportunities.count_closed": "25", "fact_opportunities.user": "Aaron"},
+  {"fact_opportunities.count_closed": "14", "fact_opportunities.user": "Gabi"},
+  {"fact_opportunities.count_closed": "6", "fact_opportunities.user": "Reuben"}]
