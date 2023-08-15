@@ -1,5 +1,5 @@
 version: datasets/v0.2
-source: capsule
+source: tap-capsulecrm
 title: Opportunities Closed by User
 questions: What users are closing the most opportunities?
 description: |-
